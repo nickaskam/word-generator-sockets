@@ -42,12 +42,12 @@ def handle_client(conn, addr, words):
             else:
                 msg = int(msg)
                 print(f"[{addr}]: Printing {msg} words(s)")
+                word_to_send = ''
                 for x in range(msg):
                     word_index = random.randint(0, numberOfWords - 1)
                     print(word_index)
-                    word_to_send = words[word_index] + ' '
-                    # print(f"word is: {word_to_send}")
-                    conn.send(word_to_send.encode(FORMAT))
+                    word_to_send += words[word_index] + ' '
+                conn.send(word_to_send.encode(FORMAT))
 
 
 def start(words):
