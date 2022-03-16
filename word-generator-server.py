@@ -45,7 +45,6 @@ def handle_client(conn, addr, words):
                 word_to_send = ''
                 for x in range(msg):
                     word_index = random.randint(0, numberOfWords - 1)
-                    print(word_index)
                     word_to_send += words[word_index] + ' '
                 conn.send(word_to_send.encode(FORMAT))
 
@@ -54,7 +53,7 @@ def start(words):
     """
     need the words to run server
     Start the server and add a new thread for the new connection
-    :return:
+    :return: an active running server to bring in the words
     """
     server.listen()
     print(f"[LISTENING] Server is listening on {SERVER}")
@@ -70,12 +69,9 @@ def load_all_words():
     Load in all the words
     :return: a list of the words
     """
-    # switch to very_long_word_list for more words
-    # switch to word_list for fewer words
     word_file = open('very_long_word_list.txt', 'r')
     valid_words = list(word_file.read().split())
     word_file.close()
-
     return valid_words
 
 
